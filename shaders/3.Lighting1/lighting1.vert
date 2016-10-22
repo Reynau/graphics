@@ -22,9 +22,7 @@ uniform vec4 matDiffuse;
 uniform vec4 matSpecular;
 uniform float matShininess;
 
-
-void main()
-{
+vec4 calculate_blinn_phong() {
   vec3 P = (modelViewMatrix * vec4(vertex, 1)).xyz;
   vec3 N = normalize(normalMatrix * normal);
 	vec3 L = normalize(lightPosition.xyz - P);
@@ -38,9 +36,13 @@ void main()
 	float NL = max(0.0, dot(N,L));
 	float NH = max(0.0, dot(N,H));
 	
-	vec4 phong = KaIa + KdId*NL + KsIs*pow(NH,matShininess);
+	return KaIa + KdId*NL + KsIs*pow(NH,matShininess);
+}
 
-  frontColor = phong;
+
+void main()
+{
+  frontColor = calculate_blinn_phong();
   vtexCoord = texCoord;
   gl_Position = modelViewProjectionMatrix * vec4(vertex.xyz, 1.0);
 }
