@@ -1,0 +1,12 @@
+#!/bin/tcsh
+setenv LD_LIBRARY_PATH ~/Documents/University/G/viewer/viewer/bin
+setenv LC_NUMERIC "C"
+setenv MAKEFLAGS --quiet
+setenv VIMAGE firefox
+setenv VEDITOR gedit
+setenv VTEXTURES /assig/grau-g/Textures
+setenv VMODELS /assig/grau-g/models
+setenv VTESTS /assig/grau-g/tests
+setenv VPLUGINS "libdraw-vbo-ext.so;libshaderloader.so;libnavigatedefault.so"
+./../../viewer/viewer/bin/viewerd
+exit
