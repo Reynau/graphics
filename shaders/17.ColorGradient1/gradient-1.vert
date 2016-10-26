@@ -24,11 +24,18 @@ void main()
 {
   vec3 maxBounds = boundingBoxMax - boundingBoxMin;
   vec3 absVertex = vertex - boundingBoxMin;
-  float fr = fract(absVertex.y/maxBounds.y);
-  vec3 interp = mix(red, yellow, fr);
+  float part = maxBounds.y / 4;
+  float fr = fract(absVertex.y/part);
+  vec3 interp;
+  
+  if (absVertex.y < part) interp = mix(red, yellow, fr);
+  else if (absVertex.y < 2*part) interp = mix(yellow, green, fr);
+  else if (absVertex.y < 3*part) interp = mix(green, cian, fr);
+  else if (absVertex.y < 4*part) interp = mix(cian, blue, fr);
+  else interp = blue;
 
   vec3 N = normalize(normalMatrix * normal);
-  frontColor = vec4(interp,1.0) * N.z;
+  frontColor = vec4(interp,1.0);
   vtexCoord = texCoord;
   gl_Position = modelViewProjectionMatrix * vec4(vertex.xyz, 1.0);
 }
