@@ -20,8 +20,7 @@ const vec3 green = vec3(0.0,1.0,0.0);
 const vec3 cian = vec3(0.0,1.0,1.0);
 const vec3 blue = vec3(0.0,0.0,1.0);
 
-void main()
-{
+vec3 gradient_color_1 () {
   vec3 maxBounds = boundingBoxMax - boundingBoxMin;
   vec3 absVertex = vertex - boundingBoxMin;
   float part = maxBounds.y / 4;
@@ -33,9 +32,14 @@ void main()
   else if (absVertex.y < 3*part) interp = mix(green, cian, fr);
   else if (absVertex.y < 4*part) interp = mix(cian, blue, fr);
   else interp = blue;
+  
+  return interp;
+}
 
+void main()
+{
   vec3 N = normalize(normalMatrix * normal);
-  frontColor = vec4(interp,1.0);
+  frontColor = vec4(gradient_color_1(),1.0);
   vtexCoord = texCoord;
   gl_Position = modelViewProjectionMatrix * vec4(vertex.xyz, 1.0);
 }
