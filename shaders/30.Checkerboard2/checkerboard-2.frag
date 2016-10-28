@@ -12,7 +12,7 @@ vec4 black = vec4(0.0,0.0,0.0,1.0);
 void main()
 {
   fragColor = grey;
-  float part = 1/n;
+  float part = 1/(n/2);
   
   if (fract(vtexCoord.s / part) > 0.5 && fract(vtexCoord.t / part) < 0.5) fragColor = black;
   if (fract(vtexCoord.s / part) < 0.5 && fract(vtexCoord.t / part) > 0.5) fragColor = black;
