@@ -3,7 +3,7 @@ setenv LD_LIBRARY_PATH ~/Documents/University/G/viewer/viewer/bin
 setenv LC_NUMERIC "C"
 setenv MAKEFLAGS --quiet
 setenv VIMAGE firefox
-setenv VEDITOR gedit
+setenv VEDITOR subl
 setenv VTEXTURES /assig/grau-g/Textures
 setenv VMODELS /assig/grau-g/models
 setenv VTESTS /assig/grau-g/tests
